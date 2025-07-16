@@ -1,0 +1,70 @@
+package com.github.chromaticforge.freelook.client.mixin;
+
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import dev.deftu.omnicore.client.OmniClient;
+import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.render.Camera;
+import net.minecraft.entity.Entity;
+import com.github.chromaticforge.freelook.client.CameraOverriddenEntity;
+import com.github.chromaticforge.freelook.client.FreeLookController;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.ModifyArgs;
+import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
+//#if MC <= 1.12.2
+//$$ import net.minecraft.entity.player.EntityPlayer;
+//#endif
+
+@Mixin(Camera.class)
+public abstract class Mixin_Camera_Rotation {
+
+    //#if MC >= 1.16.5
+    @ModifyArgs(
+            method = "update",
+            at = @At(
+                    value  = "INVOKE",
+                    target = "Lnet/minecraft/client/render/Camera;setRotation(FF)V",
+                    //#if MC >= 1.21.2
+                    ordinal = 1
+                    //#else
+                    //$$ ordinal = 0
+                    //#endif
+            )
+    )
+    private void modifyRotationArgs(Args args) {
+        Entity focused = OmniClient.getInstance().player;
+
+        if (FreeLookController.isFreeLooking && focused instanceof ClientPlayerEntity) {
+            CameraOverriddenEntity ov = (CameraOverriddenEntity) focused;
+
+            args.set(0, ov.freelook$getCameraYaw());
+            args.set(1, ov.freelook$getCameraPitch());
+        }
+    }
+
+    @ModifyReturnValue(method = "clipToSpace", at = @At("RETURN"))
+    //#if MC >=1.21
+    private float adjustClipReturn(float original) {
+    //#else
+    //$$ private double adjustClipReturn(double original) {
+    //#endif
+        return FreeLookController.applySmoothScale((float) original);
+    }
+    //#elseif MC <= 1.12.2
+    //$$ @Redirect(
+    //$$         method = "updateRenderInfo(Lnet/minecraft/entity/player/EntityPlayer;Z)V",
+    //$$         at = @At(value = "FIELD", target = "Lnet/minecraft/entity/player/EntityPlayer;rotationPitch:F", opcode = Opcodes.GETFIELD, ordinal = 0)
+    //$$ )
+    //$$ private static float modifyPitch(EntityPlayer player) {
+    //$$     return FreeLookController.isFreeLooking ? ((CameraOverriddenEntity) player).freelook$getCameraPitch() : player.rotationPitch;
+    //$$ }
+    //$$
+    //$$ @Redirect(
+    //$$         method = "updateRenderInfo(Lnet/minecraft/entity/player/EntityPlayer;Z)V",
+    //$$         at = @At(value = "FIELD", target = "Lnet/minecraft/entity/player/EntityPlayer;rotationYaw:F", opcode = Opcodes.GETFIELD, ordinal = 0)
+    //$$ )
+    //$$ private static float modifyYaw(EntityPlayer player) {
+    //$$     return FreeLookController.isFreeLooking ? ((CameraOverriddenEntity) player).freelook$getCameraYaw() : player.rotationYaw;
+    //$$ }
+    //#endif
+}

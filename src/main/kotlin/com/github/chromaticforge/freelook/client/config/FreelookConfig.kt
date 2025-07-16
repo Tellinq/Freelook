@@ -1,7 +1,7 @@
 package com.github.chromaticforge.freelook.client.config
 
 import com.github.chromaticforge.freelook.FreelookConstants
-import com.github.chromaticforge.freelook.client.hook.FreelookHook
+//import com.github.chromaticforge.freelook.client.hook.FreelookHook
 import org.polyfrost.oneconfig.api.config.v1.Config
 import org.polyfrost.oneconfig.api.config.v1.annotations.Dropdown
 import org.polyfrost.oneconfig.api.config.v1.annotations.Info
@@ -42,13 +42,13 @@ object FreelookConfig : Config(
 
     @Keybind(title = "Freelook", subcategory = "Controls")
     var keyBind = KeyBinder.Bind('f') {
-        if (FreelookHook.perspectiveToggled) {
-            if (mode == 0 /* HOLD */) {
-                FreelookHook.setPerspective(it)
-            } else {
-                FreelookHook.togglePerspective()
-            }
-        }
+//        if (FreelookHook.perspectiveToggled) {
+//            if (mode == 0 /* HOLD */) {
+//                FreelookHook.setPerspective(it)
+//            } else {
+//                FreelookHook.togglePerspective()
+//            }
+//        }
         false
     }
 
