@@ -39,7 +39,7 @@ import net.fabricmc.api.DedicatedServerModInitializer
 //$$ @Mod(modid = FreelookConstants.ID, version = FreelookConstants.VERSION)
 //#endif
 //#endif
-class ExampleEntrypoint
+class FreelookEntrypoint
 //#if FABRIC
     : ModInitializer, ClientModInitializer, DedicatedServerModInitializer
 //#endif
