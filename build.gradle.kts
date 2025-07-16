@@ -42,7 +42,3 @@ toolkitLoomHelper {
         useForgeMixin(modData.id)
     }
 }
-
-dependencies {
-    
-}
