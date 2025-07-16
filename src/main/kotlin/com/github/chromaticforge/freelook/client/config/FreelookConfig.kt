@@ -6,18 +6,17 @@ import dev.deftu.omnicore.client.OmniKeyboard
 import org.polyfrost.oneconfig.api.config.v1.Config
 import org.polyfrost.oneconfig.api.config.v1.annotations.Accordion
 import org.polyfrost.oneconfig.api.config.v1.annotations.Include
-import org.polyfrost.oneconfig.api.config.v1.annotations.Info
 import org.polyfrost.oneconfig.api.config.v1.annotations.Keybind
 import org.polyfrost.oneconfig.api.config.v1.annotations.RadioButton
 import org.polyfrost.oneconfig.api.config.v1.annotations.Switch
 import org.polyfrost.oneconfig.api.config.v1.annotations.Number
-import org.polyfrost.oneconfig.api.hypixel.v1.HypixelUtils
 import org.polyfrost.oneconfig.api.ui.v1.keybind.KeybindManager
 import org.polyfrost.polyui.input.KeyBinder
 import org.polyfrost.polyui.input.KeybindHelper
 
 object FreelookConfig : Config(
     "${ FreelookConstants.ID }.json",
+    "assets/${ FreelookConstants.ID }/icon.svg",
     FreelookConstants.NAME,
     Category.QOL
 ) {

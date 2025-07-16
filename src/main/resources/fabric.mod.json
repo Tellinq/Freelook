@@ -5,8 +5,12 @@
     "name": "${mod_name}",
     "description": "${mod_description}",
     "authors": [
-        "Your Name"
+        "chromaticforge", "femmeromantic"
     ],
+    "contributors": [
+        "Tellinq"
+    ],
+    "icon": "assets/${mod_id}/icon.png",
     "environment": "*",
     "entrypoints": {
         "main": [
