@@ -8,7 +8,7 @@ import net.minecraft.client.option.Perspective
 object PerspectiveManager {
     fun setPerspective(perspective: Int) {
         //#if MC >= 1.16.5
-        OmniClient.getInstance().options.setPerspective(Perspective.values()[perspective])
+        OmniClient.getInstance().options.perspective = Perspective.entries[perspective]
         //#elseif MC <= 1.12.2
         //$$ OmniClient.getInstance().gameSettings.thirdPersonView = perspective
         //#endif
@@ -31,7 +31,7 @@ object PerspectiveManager {
      */
     fun getMaximumPerspectiveIndex(): Int {
         //#if MC >= 1.16.5
-        return Perspective.values().size - 1
+        return Perspective.entries.size - 1
         //#else
         //$$ return 2
         //#endif
