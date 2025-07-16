@@ -56,6 +56,8 @@ class FreelookEntrypoint
 
     //#if FABRIC
     override
+    //#elseif FORGE && MC <= 1.12.2
+    //$$ @Mod.EventHandler
     //#endif
     fun onInitialize(
         //#if FORGE-LIKE
@@ -70,6 +72,8 @@ class FreelookEntrypoint
 
     //#if FABRIC
     override
+    //#elseif FORGE && MC <= 1.12.2
+    //$$ @Mod.EventHandler
     //#endif
     fun onInitializeClient(
         //#if FORGE-LIKE
@@ -80,12 +84,13 @@ class FreelookEntrypoint
         //#endif
         //#endif
     ) {
-
         initialize()
     }
 
     //#if FABRIC
     override
+    //#elseif FORGE && MC <= 1.12.2
+    //$$ @Mod.EventHandler
     //#endif
     fun onInitializeServer(
         //#if FORGE-LIKE
