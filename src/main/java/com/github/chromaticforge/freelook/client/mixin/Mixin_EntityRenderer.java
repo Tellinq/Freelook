@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.Mixin;
 //$$ import net.minecraft.client.renderer.EntityRenderer;
 //$$ import net.minecraft.entity.Entity;
 //$$ import org.objectweb.asm.Opcodes;
-//$$ import com.github.chromaticforge.freelook.client.CameraOverriddenEntity;
+//$$ import com.github.chromaticforge.freelook.client.CameraStateTracker;
 //$$ import com.github.chromaticforge.freelook.client.FreelookController;
 //$$ import org.spongepowered.asm.mixin.injection.At;
 //$$ import org.spongepowered.asm.mixin.injection.ModifyArg;
@@ -27,22 +27,22 @@ import org.spongepowered.asm.mixin.Mixin;
 //$$
 //$$     @Redirect(method = "orientCamera", at = @At(value = "FIELD", target = "Lnet/minecraft/entity/Entity;rotationYaw:F", opcode = Opcodes.GETFIELD))
 //$$     private float rotationYawModifier(Entity entity) {
-//$$         return FreelookController.perspectiveToggled ? ((CameraOverriddenEntity) entity).freelook$getCameraYaw() : entity.rotationYaw;
+//$$         return FreelookController.perspectiveToggled ? CameraStateTracker.INSTANCE.getCameraYaw(entity) : entity.rotationYaw;
 //$$     }
 //$$
 //$$     @Redirect(method = "orientCamera", at = @At(value = "FIELD", target = "Lnet/minecraft/entity/Entity;prevRotationYaw:F", opcode = Opcodes.GETFIELD))
 //$$     private float prevRotationYawModifier(Entity entity) {
-//$$         return FreelookController.perspectiveToggled ? ((CameraOverriddenEntity) entity).freelook$getCameraYaw() : entity.prevRotationYaw;
+//$$         return FreelookController.perspectiveToggled ? CameraStateTracker.INSTANCE.getCameraYaw(entity) : entity.prevRotationYaw;
 //$$     }
 //$$
 //$$     @Redirect(method = "orientCamera", at = @At(value = "FIELD", target = "Lnet/minecraft/entity/Entity;rotationPitch:F", opcode = Opcodes.GETFIELD))
 //$$     private float rotationPitchModifier(Entity entity) {
-//$$         return FreelookController.perspectiveToggled ? ((CameraOverriddenEntity) entity).freelook$getCameraPitch() : entity.rotationPitch;
+//$$         return FreelookController.perspectiveToggled ? CameraStateTracker.INSTANCE.getCameraPitch(entity) : entity.rotationPitch;
 //$$     }
 //$$
 //$$     @Redirect(method = "orientCamera", at = @At(value = "FIELD", target = "Lnet/minecraft/entity/Entity;prevRotationPitch:F", opcode = Opcodes.GETFIELD))
 //$$     private float prevRotationPitchModifier(Entity entity) {
-//$$         return FreelookController.perspectiveToggled ? ((CameraOverriddenEntity) entity).freelook$getCameraPitch() : entity.prevRotationPitch;
+//$$         return FreelookController.perspectiveToggled ? CameraStateTracker.INSTANCE.getCameraPitch(entity) : entity.prevRotationPitch;
 //$$     }
 //$$
 //$$ }

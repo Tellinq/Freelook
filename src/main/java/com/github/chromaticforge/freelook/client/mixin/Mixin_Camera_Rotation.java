@@ -57,7 +57,7 @@ public abstract class Mixin_Camera_Rotation {
     //$$         at = @At(value = "FIELD", target = "Lnet/minecraft/entity/player/EntityPlayer;rotationPitch:F", opcode = Opcodes.GETFIELD, ordinal = 0)
     //$$ )
     //$$ private static float modifyPitch(EntityPlayer player) {
-    //$$     return FreelookController.perspectiveToggled ? ((CameraOverriddenEntity) player).freelook$getCameraPitch() : player.rotationPitch;
+    //$$     return FreelookController.perspectiveToggled ? CameraStateTracker.INSTANCE.getCameraPitch(player) : player.rotationPitch;
     //$$ }
     //$$
     //$$ @Redirect(
@@ -65,7 +65,7 @@ public abstract class Mixin_Camera_Rotation {
     //$$         at = @At(value = "FIELD", target = "Lnet/minecraft/entity/player/EntityPlayer;rotationYaw:F", opcode = Opcodes.GETFIELD, ordinal = 0)
     //$$ )
     //$$ private static float modifyYaw(EntityPlayer player) {
-    //$$     return FreelookController.perspectiveToggled ? ((CameraOverriddenEntity) player).freelook$getCameraYaw() : player.rotationYaw;
+    //$$     return FreelookController.perspectiveToggled ? CameraStateTracker.INSTANCE.getCameraYaw(player) : player.rotationYaw;
     //$$ }
     //#endif
 }
