@@ -1,6 +1,5 @@
 package com.github.chromaticforge.freelook
 
-import com.github.chromaticforge.freelook.client.FreeLookConfig
 import com.github.chromaticforge.freelook.client.command.FreelookCommand
 import com.github.chromaticforge.freelook.client.config.FreelookConfig
 
@@ -115,7 +114,7 @@ class FreelookEntrypoint
 
 
     private fun initialize() {
-        FreeLookConfig.INSTANCE.preload()
+        FreelookConfig
         CommandManager.register(FreelookCommand)
     }
 

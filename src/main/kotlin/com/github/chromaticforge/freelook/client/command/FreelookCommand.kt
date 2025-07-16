@@ -1,7 +1,6 @@
 package com.github.chromaticforge.freelook.client.command
 
 import com.github.chromaticforge.freelook.FreelookConstants
-import com.github.chromaticforge.freelook.client.FreeLookConfig
 import com.github.chromaticforge.freelook.client.config.FreelookConfig
 import org.polyfrost.oneconfig.api.commands.v1.factories.annotated.Command
 import org.polyfrost.oneconfig.api.commands.v1.factories.annotated.Handler

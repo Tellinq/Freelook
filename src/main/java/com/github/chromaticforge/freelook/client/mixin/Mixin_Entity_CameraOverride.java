@@ -1,11 +1,10 @@
 package com.github.chromaticforge.freelook.client.mixin;
 
+import com.github.chromaticforge.freelook.client.FreelookController;
+import com.github.chromaticforge.freelook.client.config.FreelookConfig;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.math.MathHelper;
 import com.github.chromaticforge.freelook.client.CameraOverriddenEntity;
-import com.github.chromaticforge.freelook.client.FreeLookConfig;
-import com.github.chromaticforge.freelook.client.FreeLookController;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -28,24 +27,24 @@ public class Mixin_Entity_CameraOverride implements CameraOverriddenEntity {
             //$$ float yaw, float pitch,
             //#endif
             CallbackInfo ci) {
-        if (FreeLookController.isFreeLooking && (Object) this instanceof ClientPlayerEntity) {
+        if (FreelookController.isFreeLooking && (Object) this instanceof ClientPlayerEntity) {
             float pitchDelta = (float) (pitch * 0.15);
             float yawDelta = (float) (yaw * 0.15);
 
-            if (FreeLookConfig.Pitch.enabled) {
-                this.cameraPitch = updateCameraValue(this.cameraPitch,
+            if (FreelookConfig.Pitch.INSTANCE.getEnabled()) {
+                this.cameraPitch = FreelookController.INSTANCE.updateCameraValue(this.cameraPitch,
                         // Normal pitch is inverted on <=1.12.2. We must also reflect it here
                         //#if MC <= 1.12.2
                         //$$ -pitchDelta,
                         //#else
                         pitchDelta,
                         //#endif
-                        FreeLookConfig.Pitch.invert, FreeLookConfig.Pitch.lock, -90.0f, 90.0f);
+                        FreelookConfig.Pitch.INSTANCE.getInvert(), FreelookConfig.Pitch.INSTANCE.getLock(), -90.0f, 90.0f);
             }
 
-            if (FreeLookConfig.Yaw.enabled) {
-                this.cameraYaw = updateCameraValue(this.cameraYaw, yawDelta,
-                        FreeLookConfig.Yaw.invert, FreeLookConfig.Yaw.lock, -90.0f, 90.0f);
+            if (FreelookConfig.Yaw.INSTANCE.getEnabled()) {
+                this.cameraYaw = FreelookController.INSTANCE.updateCameraValue(this.cameraYaw, yawDelta,
+                        FreelookConfig.Yaw.INSTANCE.getInvert(), FreelookConfig.Yaw.INSTANCE.getLock(), -90.0f, 90.0f);
             }
             //#if MC <= 1.12.2
             //$$ OmniClient.getInstance().renderGlobal.setDisplayListEntitiesDirty();
@@ -53,12 +52,6 @@ public class Mixin_Entity_CameraOverride implements CameraOverriddenEntity {
 
             ci.cancel();
         }
-    }
-
-    @Unique
-    private float updateCameraValue(float currentValue, float delta, boolean invert, boolean lock, float min, float max) {
-        float adjustedDelta = invert ? -delta : delta;
-        return lock ? MathHelper.clamp(currentValue + adjustedDelta, min, max) : currentValue + adjustedDelta;
     }
 
 
