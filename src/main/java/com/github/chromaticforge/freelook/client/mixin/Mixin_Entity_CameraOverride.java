@@ -26,7 +26,7 @@ public class Mixin_Entity_CameraOverride {
             //$$ float yaw, float pitch,
             //#endif
             CallbackInfo ci) {
-        if (FreelookController.isFreeLooking && (Object) this instanceof ClientPlayerEntity) {
+        if (FreelookController.perspectiveToggled && (Object) this instanceof ClientPlayerEntity) {
             ClientPlayerEntity entity = (ClientPlayerEntity)(Object) this;
             float pitchDelta = (float) (pitch * 0.15);
             float yawDelta = (float) (yaw * 0.15);

@@ -9,7 +9,7 @@ import org.polyfrost.polyui.animate.Easing
 
 object FreelookController {
     @JvmField
-    var isFreeLooking: Boolean = false
+    var perspectiveToggled: Boolean = false
     private var lastPerspective: Int = 0
     private var pressStartTime: Long = 0
     private var lastUpdateTime: Long = 0
@@ -30,7 +30,7 @@ object FreelookController {
     }
 
     fun toggleFreeLooking() {
-        if (isFreeLooking) {
+        if (perspectiveToggled) {
             stopFreeLooking()
         } else {
             startFreeLooking()
@@ -65,11 +65,11 @@ object FreelookController {
         CameraStateTracker.setCameraYaw(player, OmniClientPlayer.yaw)
         CameraStateTracker.setCameraPitch(player, OmniClientPlayer.pitch)
 
-        isFreeLooking = true
+        perspectiveToggled = true
     }
 
     fun stopFreeLooking() {
-        isFreeLooking = false
+        perspectiveToggled = false
         PerspectiveManager.setPerspective(lastPerspective)
         timer.finishNow()
         //#if MC <= 1.12.2
@@ -78,7 +78,7 @@ object FreelookController {
     }
 
     fun applySmoothScale(z: Float): Float {
-        if (!isFreeLooking || timer.isFinished || !FreelookConfig.smoothCamera) {
+        if (!perspectiveToggled || timer.isFinished || !FreelookConfig.smoothCamera) {
             return z
         }
 

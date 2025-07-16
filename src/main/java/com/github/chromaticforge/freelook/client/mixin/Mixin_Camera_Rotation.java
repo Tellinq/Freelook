@@ -35,7 +35,7 @@ public abstract class Mixin_Camera_Rotation {
     private void modifyRotationArgs(Args args) {
         ClientPlayerEntity focused = OmniClient.getInstance().player;
 
-        if (FreelookController.isFreeLooking && focused instanceof ClientPlayerEntity) {
+        if (FreelookController.perspectiveToggled && focused instanceof ClientPlayerEntity) {
             CameraStateTracker tracker = CameraStateTracker.INSTANCE;
 
             args.set(0, tracker.getCameraYaw(focused));
@@ -57,7 +57,7 @@ public abstract class Mixin_Camera_Rotation {
     //$$         at = @At(value = "FIELD", target = "Lnet/minecraft/entity/player/EntityPlayer;rotationPitch:F", opcode = Opcodes.GETFIELD, ordinal = 0)
     //$$ )
     //$$ private static float modifyPitch(EntityPlayer player) {
-    //$$     return FreelookController.isFreeLooking ? ((CameraOverriddenEntity) player).freelook$getCameraPitch() : player.rotationPitch;
+    //$$     return FreelookController.perspectiveToggled ? ((CameraOverriddenEntity) player).freelook$getCameraPitch() : player.rotationPitch;
     //$$ }
     //$$
     //$$ @Redirect(
@@ -65,7 +65,7 @@ public abstract class Mixin_Camera_Rotation {
     //$$         at = @At(value = "FIELD", target = "Lnet/minecraft/entity/player/EntityPlayer;rotationYaw:F", opcode = Opcodes.GETFIELD, ordinal = 0)
     //$$ )
     //$$ private static float modifyYaw(EntityPlayer player) {
-    //$$     return FreelookController.isFreeLooking ? ((CameraOverriddenEntity) player).freelook$getCameraYaw() : player.rotationYaw;
+    //$$     return FreelookController.perspectiveToggled ? ((CameraOverriddenEntity) player).freelook$getCameraYaw() : player.rotationYaw;
     //$$ }
     //#endif
 }

@@ -27,22 +27,22 @@ import org.spongepowered.asm.mixin.Mixin;
 //$$
 //$$     @Redirect(method = "orientCamera", at = @At(value = "FIELD", target = "Lnet/minecraft/entity/Entity;rotationYaw:F", opcode = Opcodes.GETFIELD))
 //$$     private float rotationYawModifier(Entity entity) {
-//$$         return FreelookController.isFreeLooking ? ((CameraOverriddenEntity) entity).freelook$getCameraYaw() : entity.rotationYaw;
+//$$         return FreelookController.perspectiveToggled ? ((CameraOverriddenEntity) entity).freelook$getCameraYaw() : entity.rotationYaw;
 //$$     }
 //$$
 //$$     @Redirect(method = "orientCamera", at = @At(value = "FIELD", target = "Lnet/minecraft/entity/Entity;prevRotationYaw:F", opcode = Opcodes.GETFIELD))
 //$$     private float prevRotationYawModifier(Entity entity) {
-//$$         return FreelookController.isFreeLooking ? ((CameraOverriddenEntity) entity).freelook$getCameraYaw() : entity.prevRotationYaw;
+//$$         return FreelookController.perspectiveToggled ? ((CameraOverriddenEntity) entity).freelook$getCameraYaw() : entity.prevRotationYaw;
 //$$     }
 //$$
 //$$     @Redirect(method = "orientCamera", at = @At(value = "FIELD", target = "Lnet/minecraft/entity/Entity;rotationPitch:F", opcode = Opcodes.GETFIELD))
 //$$     private float rotationPitchModifier(Entity entity) {
-//$$         return FreelookController.isFreeLooking ? ((CameraOverriddenEntity) entity).freelook$getCameraPitch() : entity.rotationPitch;
+//$$         return FreelookController.perspectiveToggled ? ((CameraOverriddenEntity) entity).freelook$getCameraPitch() : entity.rotationPitch;
 //$$     }
 //$$
 //$$     @Redirect(method = "orientCamera", at = @At(value = "FIELD", target = "Lnet/minecraft/entity/Entity;prevRotationPitch:F", opcode = Opcodes.GETFIELD))
 //$$     private float prevRotationPitchModifier(Entity entity) {
-//$$         return FreelookController.isFreeLooking ? ((CameraOverriddenEntity) entity).freelook$getCameraPitch() : entity.prevRotationPitch;
+//$$         return FreelookController.perspectiveToggled ? ((CameraOverriddenEntity) entity).freelook$getCameraPitch() : entity.prevRotationPitch;
 //$$     }
 //$$
 //$$ }

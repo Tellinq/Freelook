@@ -8,8 +8,8 @@ object CameraCycleHandler {
     @JvmStatic
     fun shouldOverrideCameraCycle(): Boolean {
         when (FreelookConfig.onCycleChange) {
-            1 -> FreelookController.isFreeLooking = false
-            2 -> if (FreelookController.isFreeLooking && !hasCycledFreelook) {
+            1 -> FreelookController.perspectiveToggled = false
+            2 -> if (FreelookController.perspectiveToggled && !hasCycledFreelook) {
                 return false
             }
         }
