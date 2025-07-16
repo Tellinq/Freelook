@@ -6,10 +6,12 @@ import dev.deftu.omnicore.client.OmniKeyboard
 import org.polyfrost.oneconfig.api.config.v1.Config
 import org.polyfrost.oneconfig.api.config.v1.annotations.Accordion
 import org.polyfrost.oneconfig.api.config.v1.annotations.Include
+import org.polyfrost.oneconfig.api.config.v1.annotations.Info
 import org.polyfrost.oneconfig.api.config.v1.annotations.Keybind
 import org.polyfrost.oneconfig.api.config.v1.annotations.RadioButton
 import org.polyfrost.oneconfig.api.config.v1.annotations.Switch
 import org.polyfrost.oneconfig.api.config.v1.annotations.Number
+import org.polyfrost.oneconfig.api.hypixel.v1.HypixelUtils
 import org.polyfrost.oneconfig.api.ui.v1.keybind.KeybindManager
 import org.polyfrost.polyui.input.KeyBinder
 import org.polyfrost.polyui.input.KeybindHelper
@@ -19,6 +21,9 @@ object FreelookConfig : Config(
     FreelookConstants.NAME,
     Category.QOL
 ) {
+
+    @Info(title = "Warning", description = "Freelook is disallowed on Hypixel. Snaplook is enabled instead.")
+    var hypixelWarning: Boolean = false
 
     @RadioButton(
         title = "Change Perspective",
@@ -89,6 +94,9 @@ object FreelookConfig : Config(
 
     @Switch(title = "Smooth Camera")
     var smoothCamera: Boolean = false
+
+    @Switch(title = "Snaplook")
+    var snaplook: Boolean = false
 
     @Keybind(title = "Freelook Keybind")
     var freelookbind: KeyBinder.Bind = KeybindHelper.builder()

@@ -5,6 +5,7 @@ import com.github.chromaticforge.freelook.client.config.FreelookConfig;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
 import com.github.chromaticforge.freelook.client.CameraOverriddenEntity;
+import org.polyfrost.oneconfig.api.hypixel.v1.HypixelUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -54,7 +55,9 @@ public class Mixin_Entity_CameraOverride implements CameraOverriddenEntity {
             //$$ OmniClient.getInstance().renderGlobal.setDisplayListEntitiesDirty();
             //#endif
 
-            ci.cancel();
+            if (!FreelookConfig.INSTANCE.getSnaplook() || HypixelUtils.isHypixel()) {
+                ci.cancel();
+            }
         }
     }
 
