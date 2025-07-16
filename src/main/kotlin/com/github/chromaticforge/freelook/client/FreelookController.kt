@@ -62,11 +62,8 @@ object FreelookController {
         }
 
         val player = OmniClient.getInstance().player
-        if (player is CameraOverriddenEntity) {
-            val overridden = player as CameraOverriddenEntity
-            overridden.`freelook$setCameraYaw`(OmniClientPlayer.yaw)
-            overridden.`freelook$setCameraPitch`(OmniClientPlayer.pitch)
-        }
+        CameraStateTracker.setCameraYaw(player, OmniClientPlayer.yaw)
+        CameraStateTracker.setCameraPitch(player, OmniClientPlayer.pitch)
 
         isFreeLooking = true
     }

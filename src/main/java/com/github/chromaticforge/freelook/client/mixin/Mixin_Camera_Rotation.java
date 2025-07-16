@@ -1,12 +1,11 @@
 package com.github.chromaticforge.freelook.client.mixin;
 
+import com.github.chromaticforge.freelook.client.CameraStateTracker;
 import com.github.chromaticforge.freelook.client.FreelookController;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import dev.deftu.omnicore.client.OmniClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.Camera;
-import net.minecraft.entity.Entity;
-import com.github.chromaticforge.freelook.client.CameraOverriddenEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
@@ -34,13 +33,13 @@ public abstract class Mixin_Camera_Rotation {
             )
     )
     private void modifyRotationArgs(Args args) {
-        Entity focused = OmniClient.getInstance().player;
+        ClientPlayerEntity focused = OmniClient.getInstance().player;
 
         if (FreelookController.isFreeLooking && focused instanceof ClientPlayerEntity) {
-            CameraOverriddenEntity ov = (CameraOverriddenEntity) focused;
+            CameraStateTracker tracker = CameraStateTracker.INSTANCE;
 
-            args.set(0, ov.freelook$getCameraYaw());
-            args.set(1, ov.freelook$getCameraPitch());
+            args.set(0, tracker.getCameraYaw(focused));
+            args.set(1, tracker.getCameraPitch(focused));
         }
     }
 
