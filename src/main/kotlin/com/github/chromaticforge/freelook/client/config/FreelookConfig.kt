@@ -115,7 +115,7 @@ object FreelookConfig : Config(
         .build()
 
     init {
-        initializeConfig()
+        initialize(true)
         KeybindManager.registerKeybind(freelookbind)
     }
 }
