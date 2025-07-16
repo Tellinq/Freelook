@@ -44,11 +44,5 @@ toolkitLoomHelper {
 }
 
 dependencies {
-    if (mcData.isFabric) {
-        if (mcData.isLegacyFabric) {
-            modImplementation("net.legacyfabric.legacy-fabric-api:legacy-fabric-api:${mcData.dependencies.legacyFabric.legacyFabricApiVersion}")
-        } else {
-            modImplementation("net.fabricmc.fabric-api:fabric-api:${mcData.dependencies.fabric.fabricApiVersion}")
-        }
-    }
+    
 }
