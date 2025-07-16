@@ -23,7 +23,7 @@ object FreelookConfig : Config(
 
     @RadioButton(
         title = "Change Perspective",
-        description = "Which camera perspective to start",
+        description = "Which perspective should make Freelook/Snaplook start in a different perspective",
         options = ["Never", "First Person Only", "Third Person Only", "Always"]
     )
     var changePerspective: Int = 1
@@ -48,7 +48,7 @@ object FreelookConfig : Config(
 
         @Number(
             title = "Hold threshold",
-            description = "How long you can hold before FreeLook is disabled upon release",
+            description = "How long you can hold before FreeLook/Snaplook is disabled upon release",
             unit = "ms",
             min = 0f,
             max = Float.MAX_VALUE,
@@ -78,17 +78,18 @@ object FreelookConfig : Config(
     }
 
     @JvmField
-    @Switch(title = "Add to Camera Cycle")
+    @Switch(title = "Add to Perspective Cycle", description = "Add Freelook/Snaplook as part of the perspective cycle")
     var addToCameraCycle: Boolean = false
 
     @JvmField
     @RadioButton(
-        title = "On Camera Cycle Change",
+        title = "On Perspective Cycle Change",
+        description = "How should Freelook/Snaplook behave when on a perspective cycle change?",
         options = ["Don't change FreeLook state", "Stop FreeLook", "Block Cycle Change"]
     )
     var onCycleChange: Int = 1
 
-    @Switch(title = "Smooth Camera")
+    @Switch(title = "Smooth Camera", description = "Animate third person when Freelook/Snaplook is enabled")
     var smoothCamera: Boolean = false
 
     @Switch(title = "Snaplook", description = "Use a built in perspective instead. This will be forcefully enabled on Hypixel.")
