@@ -22,9 +22,6 @@ object FreelookConfig : Config(
     Category.QOL
 ) {
 
-    @Info(title = "Warning", description = "Freelook is disallowed on Hypixel. Snaplook is enabled instead.")
-    var hypixelWarning: Boolean = false
-
     @RadioButton(
         title = "Change Perspective",
         description = "Which camera perspective to start",
@@ -95,7 +92,7 @@ object FreelookConfig : Config(
     @Switch(title = "Smooth Camera")
     var smoothCamera: Boolean = false
 
-    @Switch(title = "Snaplook")
+    @Switch(title = "Snaplook", description = "Use a built in perspective instead. This will be forcefully enabled on Hypixel.")
     var snaplook: Boolean = false
 
     @Keybind(title = "Freelook Keybind")
