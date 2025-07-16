@@ -13,6 +13,8 @@ import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 //#if MC <= 1.12.2
 //$$ import net.minecraft.entity.player.EntityPlayer;
+//$$ import org.objectweb.asm.Opcodes;
+//$$ import org.spongepowered.asm.mixin.injection.Redirect;
 //#endif
 
 @Mixin(Camera.class)

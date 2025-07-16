@@ -11,6 +11,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+//#if MC <= 1.12.2
+//$$ import dev.deftu.omnicore.client.OmniClient;
+//#endif
+
 @Mixin(Entity.class)
 public class Mixin_Entity_CameraOverride implements CameraOverriddenEntity {
     @Unique

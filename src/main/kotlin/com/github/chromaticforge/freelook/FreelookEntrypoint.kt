@@ -33,7 +33,7 @@ import net.fabricmc.api.DedicatedServerModInitializer
 //#if FORGE-LIKE
 //$$ import com.github.chromaticforge.freelook.FreelookConstants
 //#if MC >= 1.16.5
-//$$ @Mod(ModTemplateConstants.ID)
+//$$ @Mod(FreelookConstants.ID)
 //#else
 //$$ @Mod(modid = FreelookConstants.ID, version = FreelookConstants.VERSION)
 //#endif
@@ -80,9 +80,6 @@ class FreelookEntrypoint
         //#endif
         //#endif
     ) {
-        //#if MC <= 1.12.2
-        //$$ if (!event.side.isClient) return
-        //#endif
 
         initialize()
     }
@@ -99,9 +96,6 @@ class FreelookEntrypoint
         //#endif
         //#endif
     ) {
-        //#if MC <= 1.12.2
-        //$$ if (!event.side.isServer) return
-        //#endif
     }
 
     //#if FORGE-LIKE && MC >= 1.16.5
