@@ -59,21 +59,24 @@ object FreelookConfig : Config(
     }
 
     open class MovementConfig {
-        @Include
-        var enabled: Boolean = true
-
         @Switch(title = "Invert")
         var invert: Boolean = false
     }
 
     @Accordion(title = "Pitch Movement", index = 2)
     object Pitch : MovementConfig() {
+        @Include
+        var enabled: Boolean = true
+
         @Switch(title = "Lock")
         var lock: Boolean = true
     }
 
     @Accordion(title = "Yaw Movement", index = 2)
     object Yaw : MovementConfig() {
+        @Include
+        var enabled: Boolean = true
+
         @Switch(title = "Lock")
         var lock: Boolean = false
     }
