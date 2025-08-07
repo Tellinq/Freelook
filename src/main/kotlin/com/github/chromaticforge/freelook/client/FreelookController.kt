@@ -3,6 +3,7 @@ package com.github.chromaticforge.freelook.client
 import com.github.chromaticforge.freelook.client.config.FreelookConfig
 import dev.deftu.omnicore.client.OmniClient
 import dev.deftu.omnicore.client.OmniClientPlayer
+import dev.deftu.omnicore.client.OmniPerspective
 import net.minecraft.util.math.MathHelper
 import org.polyfrost.polyui.animate.Animation
 import org.polyfrost.polyui.animate.Easing
@@ -38,22 +39,15 @@ object FreelookController {
     }
 
     fun start() {
-        val currentPerspective = PerspectiveManager.getCurrentPerspective()
+        val currentPerspective = OmniPerspective.rawCurrentPerspective
         if (currentPerspective != lastPerspective) {
             lastPerspective = currentPerspective
         }
 
         val perspective = FreelookConfig.perspectiveMode
 
-        when (FreelookConfig.changePerspective) {
-            0 -> {}
-            1 -> if (lastPerspective == 0) {
-                PerspectiveManager.setPerspective(perspective)
-            }
-            2 -> if (lastPerspective != 0) {
-                PerspectiveManager.setPerspective(perspective)
-            }
-            3 -> PerspectiveManager.setPerspective(perspective)
+        if (shouldSetPerspective(FreelookConfig.changePerspective, lastPerspective)) {
+            OmniPerspective.rawCurrentPerspective = perspective
         }
 
         if (FreelookConfig.smoothCamera) {
@@ -68,9 +62,18 @@ object FreelookController {
         perspectiveToggled = true
     }
 
+    fun shouldSetPerspective(mode: Int, last: Int): Boolean {
+        return when (mode) {
+            1 -> last == 0
+            2 -> last != 0
+            3 -> true
+            else -> false
+        }
+    }
+
     fun stop() {
         perspectiveToggled = false
-        PerspectiveManager.setPerspective(lastPerspective)
+        OmniPerspective.rawCurrentPerspective = lastPerspective
         timer.finishNow()
         //#if MC <= 1.12.2
         //$$ OmniClient.getInstance().renderGlobal.setDisplayListEntitiesDirty()

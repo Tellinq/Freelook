@@ -1,6 +1,7 @@
 package com.github.chromaticforge.freelook.client
 
 import com.github.chromaticforge.freelook.client.config.FreelookConfig
+import dev.deftu.omnicore.client.OmniPerspective
 
 object CameraCycleHandler {
     var hasCycledFreelook = false
@@ -19,8 +20,8 @@ object CameraCycleHandler {
                 hasCycledFreelook = false
                 FreelookController.stop()
             } else if (
-                PerspectiveManager.getCurrentPerspective() ==
-                PerspectiveManager.getMaximumPerspectiveIndex()
+                OmniPerspective.rawCurrentPerspective ==
+                OmniPerspective.ALL.size - 1
             ) {
                 FreelookController.start()
                 hasCycledFreelook = true
