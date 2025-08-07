@@ -32,7 +32,7 @@ toolkitLoomHelper {
     useTweaker("org.polyfrost.oneconfig.loader.stage0.LaunchWrapperTweaker")
 
     useDevAuth("1.2.1")
-    useMixinExtras("0.4.1")
+    useMixinExtras("0.5.0")
 
     if (mcData.isFabric) {
         if (!mcData.isLegacyFabric) {
