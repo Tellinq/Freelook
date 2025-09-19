@@ -12,8 +12,8 @@ import org.polyfrost.oneconfig.api.config.v1.annotations.RadioButton
 import org.polyfrost.oneconfig.api.config.v1.annotations.Switch
 import org.polyfrost.oneconfig.api.config.v1.annotations.Number
 import org.polyfrost.oneconfig.api.ui.v1.keybind.KeybindManager
-import org.polyfrost.polyui.input.KeyBinder
 import org.polyfrost.polyui.input.KeybindHelper
+import org.polyfrost.polyui.input.PolyBind
 
 object FreelookConfig : Config(
     "${ FreelookConstants.ID }.json",
@@ -101,7 +101,7 @@ object FreelookConfig : Config(
     var snaplook: Boolean = false
 
     @Keybind(title = "Freelook Keybind")
-    var keybind: KeyBinder.Bind = KeybindHelper.builder()
+    var keybind: PolyBind = KeybindHelper.builder()
         .keys(OmniKeyboard.KEY_F)
         .does{ pressed ->
             if (OmniScreen.isInScreen) {
