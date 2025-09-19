@@ -36,7 +36,10 @@ toolkitLoomHelper {
 
     if (mcData.isFabric) {
         if (!mcData.isLegacyFabric) {
-            useProperty("org.lwjgl.glfw.libname", "/usr/lib/libglfw.so", GameSide.CLIENT)
+            val glfwLib = File("/usr/lib/libglfw.so")
+            if (glfwLib.exists()) {
+                useProperty("org.lwjgl.glfw.libname", glfwLib.absolutePath, GameSide.CLIENT)
+            }
         }
     }
 
